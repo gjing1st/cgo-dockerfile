@@ -1,0 +1,23 @@
+#FROM debian:bookworm
+#COPY ./oracle-instantclient19.25-basic_19.25.0.0.0-2_amd64.deb /
+#RUN dpkg -i /oracle-instantclient19.25-basic_19.25.0.0.0-2_amd64.deb
+## 更新软件源并安装 libaio
+#RUN apt-get update && \
+#    apt-get install -y libaio1 && \
+##    apt-get install -y gcc && \
+#    apt-get clean && \
+#    rm -rf /var/lib/apt/lists/*
+
+
+FROM debian:bookworm
+
+# 安装 Oracle Instant Client
+RUN --mount=type=bind,source=./build/docker/oracle-instantclient19.25-basic_19.25.0.0.0-2_amd64.deb,target=/oracle-instantclient19.25-basic_19.25.0.0.0-2_amd64.deb \
+        dpkg -i /oracle-instantclient19.25-basic_19.25.0.0.0-2_amd64.deb &&\
+        apt-get update && \
+        apt-get install -y libaio1 && \
+        apt-get clean && \
+        rm -rf /var/lib/apt/lists/*
+
+
+# docker build -t debain-dbes:bookworm -f ./build/docker/Dockerfile-base-debian .
