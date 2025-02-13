@@ -1,6 +1,6 @@
 # 多阶段构建
 #构建一个 builder 镜像，目的是在其中编译出可执行文件
-FROM cgo-debain:1.23 as builder
+FROM cgo-debain:1.24 as builder
 
 RUN go env -w GOPROXY=https://goproxy.cn,direct
 RUN --mount=type=cache,target=/go/pkg/mod/ \

@@ -1,5 +1,5 @@
-ARG GO_VERSION=1.23.0
-ARG ALPINE_VERSION=3.20
+ARG GO_VERSION=1.24.0
+ARG ALPINE_VERSION=3.21
 FROM  golang:${GO_VERSION}-alpine${ALPINE_VERSION} AS build
 WORKDIR /src
 #Add this proxy in mainland China; it is not needed overseas.
